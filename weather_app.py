@@ -1,10 +1,24 @@
-from flask import Flask
+from telegram.ext import Updater
+from telegram.ext import CommandHandler
 
-app = Flask(__name__)
+TOKEN = "391437242:AAG3xkWlG1O4MGKAQu_zWVhUp07TAiRuwfw"
+PORT = int(os.environ.get("PORT", "5000"))
 
-@app.route("/")
-def hello():
-    return "<h1 style='color:blue'>Hello There!</h1>"
+class TelegramBot(object):
+    updater = Updater(TOKEN)
+    def __init__(self, token, port):
+        self.updater = Updater(token)
+        self.start_webhook(lister="0.0.0.0", port=port, url_path="telegram")
+        self.dispatcher = self.updater.dispatcher
+        self.add_dispatchers()
+        self.updater.bot.set_webhook("https://pure-refuge-87808/telegram/")
+        self.updater.idle()
+    
+    def add_dispatchers(self):
+        self.dispatcher.add_handler(CommandHandler('start', self.echo)
 
+    def start(self, bot, update):
+        bot.send_message(chat_id=update.message.chat_id, text="What's up?")
+        
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    bot = TelegramBot(TOKEN, PORT)
