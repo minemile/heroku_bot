@@ -1,1 +1,1 @@
-web: python weather_app.py
+web: python telegram_bot.py
