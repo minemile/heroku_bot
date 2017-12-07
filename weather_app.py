@@ -12,7 +12,7 @@ class TelegramBot(object):
         self.updater.start_webhook(listen="0.0.0.0", port=port, url_path="telegram")
         self.dispatcher = self.updater.dispatcher
         self.add_dispatchers()
-        self.updater.bot.set_webhook("https://pure-refuge-87808/telegram/")
+        self.updater.bot.set_webhook("https://pure-refuge-87808.herokuapp.com/telegram/")
         self.updater.idle()
     
     def add_dispatchers(self):
