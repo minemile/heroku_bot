@@ -1,0 +1,40 @@
+action_factory: null
+actions:
+- utter_greet
+- utter_ask_city
+- utter_ask_date
+- utter_progress
+- utter_ask_date_and_city
+- utter_another_query
+- actions.ActionFindWeather
+- utter_goodbye
+config:
+  store_entities_as_slots: true
+entities:
+- city
+- date
+intents:
+- greet
+- goodbye
+- inform
+slots:
+  city:
+    type: text
+  date:
+    type: text
+templates:
+  utter_another_query:
+  - text: Enter another query if you want)
+  utter_ask_city:
+  - text: Tell me the city
+  utter_ask_date:
+  - text: Tell me the date
+  utter_ask_date_and_city:
+  - text: Tell me date and city
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: Hey! I'll tell you about the weather. Ask me.
+  utter_progress:
+  - text: Work on it...
+topics: []

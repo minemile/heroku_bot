@@ -1,4 +1,4 @@
-from weather_app import app
+from web_server.weather_app import app
 
 if __name__ == '__main__':
     app.run()
