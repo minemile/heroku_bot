@@ -1,7 +1,7 @@
 import os
 from telegram.ext import Updater
 from telegram.ext import CommandHandler, MessageHandler, Filters
-from ai_engine.dialogflow import DialogFlowClient
+from ai_engine.nlu_wrappers.dialogflow import DialogFlowClient
 
 TOKEN = "391437242:AAG3xkWlG1O4MGKAQu_zWVhUp07TAiRuwfw"
 PORT = int(os.environ.get("PORT", "5000"))
@@ -31,8 +31,8 @@ class TelegramBot(object):
 
     def conversation(self, bot, update):
         msg = update.message.text
-        msg = self.dialogflow_client.response(msg, update.message.chat_id)
-        bot.send_message(chat_id=update.message.chat_id, text=msg)
+        output = self.dialogflow_client.response(msg, "Telegram", update.message.chat_id)
+        bot.send_message(chat_id=update.message.chat_id, text=output["msg"])
 
 if __name__ == "__main__":
     bot = TelegramBot(TOKEN, PORT, "https://pure-refuge-87808.herokuapp.com/")
